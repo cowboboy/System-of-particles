@@ -146,12 +146,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleColorful.cpp" />
     <ClCompile Include="Particles.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleColorful.h" />
     <ClInclude Include="Particles.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>

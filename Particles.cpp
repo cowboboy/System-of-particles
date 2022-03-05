@@ -1,6 +1,6 @@
 #include "Particles.h"
 #include "Config.h"
-#include <algorithm>
+#include "ParticleColorful.h"
 
 void Particles::MouseControl(sf::RenderWindow& w) {
     sf::Vector2i pixelPos = sf::Mouse::getPosition(w);
@@ -28,7 +28,9 @@ void Particles::UpdateState(float time)
     }
     for (int i = 0; i < 10; ++i) {
         if (particles.size() < 500) {
-            Particle* p = new Particle();
+            ParticleColorful* p = new ParticleColorful();
+            p->FromColor = sf::Color(0, 0, 0);
+            p->ToColor = sf::Color(255, 78, 0);
             p->setPos(MousePosition.x, MousePosition.y);
             particles.push_back(*p);
         }
@@ -41,11 +43,6 @@ void Particles::UpdateState(float time)
 void Particles::Render(sf::RenderWindow& w)
 {
     for (auto& p : particles) {
-        float k = std::min(1.f, p.Life / 100);
-        int alpha = (int)255 * k;
-        sf::Color color = p.getShape().getFillColor();
-        color.a = alpha;
-        p.getShape().setFillColor(color);
-        w.draw(p.getShape());
+        p.Draw(w);
     }
 }

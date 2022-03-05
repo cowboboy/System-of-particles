@@ -27,6 +27,9 @@
     <ClCompile Include="Particles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleColorful.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleColorful.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

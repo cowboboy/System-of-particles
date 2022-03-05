@@ -2,10 +2,11 @@
 #include <iostream>
 #include <list>
 #include "Particle.h"
+#include "ParticleColorful.h"
 class Particles
 {
 public:
-	std::list<Particle> particles;
+	std::list<ParticleColorful> particles;
 	void UpdateState(float time);
 	void Render(sf::RenderWindow& w);
 	void MouseControl(sf::RenderWindow& w);

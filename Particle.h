@@ -10,6 +10,7 @@ public:
     float Life;
     sf::CircleShape circle;
     Particle();
+    virtual void Draw(sf::RenderWindow& w);
     sf::CircleShape& getShape();
     void setPos(float x, float y);
 };

@@ -12,11 +12,22 @@ Particle::Particle()
 	circle.setFillColor(sf::Color::Black);
 }
 
+void Particle::Draw(sf::RenderWindow& w)
+{
+	float k = std::min(1.f, Life / 100.f);
+	int alpha = (int)255 * k;
+	sf::Color color = circle.getFillColor();
+	color.a = alpha;
+	circle.setFillColor(color);
+	w.draw(circle);
+}
+
+sf::CircleShape& Particle::getShape()
+{
+	return circle;
+}
+
 void Particle::setPos(float x, float y) {
 	X = x; Y = y;
 	circle.setPosition(X, Y);
-}
-
-sf::CircleShape& Particle::getShape() {
-	return circle;
 }
