@@ -2,14 +2,21 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "Particle.h"
-#include "Particles.h"
+#include "Emitter.h"
 #include "Config.h"
+#include "Point.h"
+#include "GravityPoint.h"
+#include "AntiGravityPoint.h"
 
 int main() {
 	srand(time(0));
 	rand();
 	sf::RenderWindow window(sf::VideoMode(W, H), "Particles");
-	Particles system;
+	Emitter system;
+
+	system.impactPoints.push_back(new GravityPoint(W / 4, H / 2));
+	system.impactPoints.push_back(new AntiGravityPoint(W / 2, H / 2));
+	system.impactPoints.push_back(new GravityPoint(W * 0.75, H / 2));
 
 	int framerate = 100;
 	float elapsedMillisecondsExpected = 1000.f / framerate;

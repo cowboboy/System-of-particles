@@ -1,11 +1,14 @@
 #include "Particle.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Config.h"
 
 Particle::Particle()
 {
-	Direction = rand() % 361;
-	Speed = 10 + rand() % 11;
+	int direction = rand() % 361;
+	int speed = 10 + rand() % 11;
+	SpeedX = (float)(cos(direction * DEGTORAD) * speed);
+	SpeedY = -(float)(sin(direction * DEGTORAD) * speed);
 	Radius = 2 + rand() % 11;
 	Life = 20 + rand() % 101;
 	circle.setRadius(Radius);

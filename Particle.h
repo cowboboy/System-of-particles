@@ -5,8 +5,7 @@ class Particle
 public:
     int Radius;
     float X, Y;  
-    float Direction;
-    float Speed;
+    float SpeedX, SpeedY;
     float Life;
     sf::CircleShape circle;
     Particle();

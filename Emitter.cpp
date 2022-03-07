@@ -1,28 +1,36 @@
-#include "Particles.h"
+#include <algorithm>
+#include "Emitter.h"
 #include "Config.h"
 #include "ParticleColorful.h"
+#include "IImpactPoint.h"
 
-void Particles::MouseControl(sf::RenderWindow& w) {
+void Emitter::MouseControl(sf::RenderWindow& w) {
     sf::Vector2i pixelPos = sf::Mouse::getPosition(w);
     MousePosition = w.mapPixelToCoords(pixelPos);
 }
 
-void Particles::UpdateState(float time)
+void Emitter::UpdateState(float time)
 {
     for (auto& particle : particles)
     {
         particle.Life -= 0.02 * time;
         if (particle.Life < 0) {
-            particle.Direction = rand() % 361;
-            particle.Speed = 10 + rand() % 11;
+            int direction = rand() % 361;
+            int speed = 10 + rand() % 11;
+            particle.SpeedX = (float)(cos(direction * DEGTORAD) * speed);
+            particle.SpeedY = -(float)(sin(direction * DEGTORAD) * speed);
             particle.Radius = 2 + rand() % 11;
             particle.Life = 20 + rand() % 101;
             particle.X = MousePosition.x;
             particle.Y = MousePosition.y;
         } else {
-            float directionInRadians = particle.Direction * 0.017453f;
-            particle.X += (float)(particle.Speed * cos(directionInRadians) * time * 0.01);
-            particle.Y += (float)(particle.Speed * sin(directionInRadians) * time * 0.01);
+            for (auto& point : impactPoints) {
+                point->ImpactParticle(particle);
+            }
+            particle.SpeedX += GravitationX * time * 0.008;
+            particle.SpeedY += GravitationY * time * 0.008;
+            particle.X += particle.SpeedX * time * 0.01;
+            particle.Y += particle.SpeedY * time * 0.01;
             particle.getShape().setPosition(particle.X, particle.Y);
         }
     }
@@ -40,9 +48,12 @@ void Particles::UpdateState(float time)
     }
 }
 
-void Particles::Render(sf::RenderWindow& w)
+void Emitter::Render(sf::RenderWindow& w)
 {
     for (auto& p : particles) {
         p.Draw(w);
+    }
+    for (auto& g : impactPoints) {
+        g->render(w); 
     }
 }

@@ -144,18 +144,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AntiGravityPoint.cpp" />
+    <ClCompile Include="GravityPoint.cpp" />
+    <ClCompile Include="IImpactPoint.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleColorful.cpp" />
-    <ClCompile Include="Particles.cpp" />
+    <ClCompile Include="Emitter.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AntiGravityPoint.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="GravityPoint.h" />
+    <ClInclude Include="IImpactPoint.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleColorful.h" />
-    <ClInclude Include="Particles.h" />
+    <ClInclude Include="Emitter.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
