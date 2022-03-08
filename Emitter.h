@@ -12,6 +12,7 @@ public:
 	std::list<IImpactPoint*> impactPoints;
 	void UpdateState(float time);
 	void Render(sf::RenderWindow& w);
+	virtual void ResetParticle(Particle& particle);
 	void MouseControl(sf::RenderWindow& w);
 	sf::Vector2f MousePosition;
 	float GravitationX = 0, GravitationY = 1;

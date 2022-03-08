@@ -15,14 +15,7 @@ void Emitter::UpdateState(float time)
     {
         particle.Life -= 0.02 * time;
         if (particle.Life < 0) {
-            int direction = rand() % 361;
-            int speed = 10 + rand() % 11;
-            particle.SpeedX = (float)(cos(direction * DEGTORAD) * speed);
-            particle.SpeedY = -(float)(sin(direction * DEGTORAD) * speed);
-            particle.Radius = 2 + rand() % 11;
-            particle.Life = 20 + rand() % 101;
-            particle.X = MousePosition.x;
-            particle.Y = MousePosition.y;
+            ResetParticle(particle);
         } else {
             for (auto& point : impactPoints) {
                 point->ImpactParticle(particle);
@@ -34,12 +27,12 @@ void Emitter::UpdateState(float time)
             particle.getShape().setPosition(particle.X, particle.Y);
         }
     }
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 5; ++i) {
         if (particles.size() < 500) {
             ParticleColorful* p = new ParticleColorful();
             p->FromColor = sf::Color(0, 0, 0);
-            p->ToColor = sf::Color(255, 78, 0);
-            p->setPos(MousePosition.x, MousePosition.y);
+            p->ToColor = sf::Color(255, 255, 255);
+            ResetParticle(*p);
             particles.push_back(*p);
         }
         else {
@@ -56,4 +49,16 @@ void Emitter::Render(sf::RenderWindow& w)
     for (auto& g : impactPoints) {
         g->render(w); 
     }
+}
+
+void Emitter::ResetParticle(Particle& particle)
+{
+    int direction = rand() % 361;
+    int speed = 10 + rand() % 11;
+    particle.SpeedX = (float)(cos(direction * DEGTORAD) * speed);
+    particle.SpeedY = -(float)(sin(direction * DEGTORAD) * speed);
+    particle.Radius = 2 + rand() % 11;
+    particle.Life = 20 + rand() % 101;
+    particle.X = MousePosition.x;
+    particle.Y = MousePosition.y;
 }

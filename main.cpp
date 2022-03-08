@@ -7,16 +7,17 @@
 #include "Point.h"
 #include "GravityPoint.h"
 #include "AntiGravityPoint.h"
+#include "TopEmitter.h"
 
 int main() {
 	srand(time(0));
 	rand();
 	sf::RenderWindow window(sf::VideoMode(W, H), "Particles");
-	Emitter system;
+	TopEmitter system(W);
 
 	system.impactPoints.push_back(new GravityPoint(W / 4, H / 2));
 	system.impactPoints.push_back(new AntiGravityPoint(W / 2, H / 2));
-	system.impactPoints.push_back(new GravityPoint(W * 0.75, H / 2));
+	system.impactPoints.push_back(new GravityPoint(W * 0.75, H / 2)); 
 
 	int framerate = 100;
 	float elapsedMillisecondsExpected = 1000.f / framerate;
@@ -35,7 +36,7 @@ int main() {
 				window.close();
 		}
 
-		window.clear(sf::Color::White);
+		window.clear(sf::Color::Black);
 		float sleepMilliseconds = elapsedMillisecondsExpected - elapsedMilliseconds;
 		int frames = int(elapsedMilliseconds / elapsedMillisecondsExpected) + 1;
 		for (int i = 0; i < frames; ++i) system.UpdateState(elapsedMillisecondsExpected); 
